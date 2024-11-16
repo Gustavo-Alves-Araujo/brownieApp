@@ -3,11 +3,13 @@ import { type User } from "../types";
 
 interface UserState {
   users: User[];
+  selectedUser: User | null;
 }
 
 export const useUserStore = defineStore("userStore", {
   state: (): UserState => ({
     users: [],
+    selectedUser: null
   }),
 
   actions: {
@@ -21,5 +23,10 @@ export const useUserStore = defineStore("userStore", {
         console.error("Erro ao buscar tarefas:", error);
       }
     },
+
+    selectUser(user: User) {
+      this.selectedUser = user;
+      console.log("uasuario selecionado", this.selectedUser)
+    }
   },
 });
